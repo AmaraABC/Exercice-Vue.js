@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr-FR" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premier exercice avec Vue.js</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <!-- Module = un programme qui utilise un système d'importation-->
+    <script type="module">
+        import { h, createApp } from "/node_modules/vue/dist/vue.esm-browser.prod.js"
+
+        // Objet
+        const Login = {
+            data() {
+                return {
+                    username: 'Tara',
+                    password: 'Issy-les-Moulineaux'
+                }
+            },
+
+            // Représente le DOM Virtuel
+            render() {
+                // Formulaire virtuel
+                return h('form', {}, [
+                    // Saisie du nom d'utilisateur
+                    h('label', { for: 'username' }, 'Nom d\'utilisateur\t'),
+                    h('input', {
+                        id: 'username',
+                        name: 'username',
+                        type: 'text',
+                        placeholder: 'Nom d\'utilisateur',
+                        minlength: '2',
+                        maxlength: '50'
+                    }),
+
+                    // Petit retour à la ligne
+                    h('br'),
+
+                    // Saisie du mot de passe
+                    h('label', { for: 'mot-de-passe' }, 'Mot de passe\t'),
+                    h('input', {
+                        id: 'mot-de-passe',
+                        name: 'mot-de-passe',
+                        type: 'password',
+                        placeholder: 'Mot de passe',
+                        minlength: '8',
+                        maxlength: '50'
+                    }),
+
+                    // Encore un retour à la ligne
+                    h('br'),
+
+                    // Bouton pour soumettre les champs entrés précédemment
+                    h('button', { type: 'submit' }, 'Se connecter')
+                ])
+            },
+        }
+
+        createApp(Login).mount('#root')
+    </script>
+</body>
+
+</html>
